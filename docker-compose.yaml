@@ -4,22 +4,20 @@ services:
   rest:
     build:
       context: ./api/rest
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
       
   graphql:
     build:
       context: ./api/graphql
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "8081:8081"
 
   grpc:
     build:
       context: ./api/grpc
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     ports:
       - "50051:50051"
-
-  
