@@ -1,23 +1,27 @@
 version: '3'
 
 services:
-  rest:
-    build:
-      context: ./api/rest
-      dockerfile: ./Dockerfile
+  mysql:
+    build: .docker/mysql
+    container_name: mysql
+    command: --innodb-use-native-aio=0
+    restart: always
+    tty: true
+    environment:
+      - MYSQL_DATABASE=orders
+      - MYSQL_ROOT_PASSWORD=root
     ports:
-      - "8080:8080"
-      
-  graphql:
-    build:
-      context: ./api/graphql
-      dockerfile: ./Dockerfile
+      - 3337:3306
+    volumes:
+      - .docker/mysql/data:/var/lib/mysql
+      - "./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
     ports:
-      - "8081:8081"
-
-  grpc:
-    build:
-      context: ./api/grpc
-      dockerfile: ./Dockerfile
-    ports:
-      - "50051:50051"
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
