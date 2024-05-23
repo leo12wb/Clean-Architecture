@@ -6,8 +6,8 @@ package graph
 import (
 	"context"
 
-	"github.com/jorgemarinho/go-expert-clean-architecture/internal/infra/graph/model"
-	"github.com/jorgemarinho/go-expert-clean-architecture/internal/usecase"
+	"github.com/leo12wb/Clean-Architecture/internal/infra/graph/model"
+	"github.com/leo12wb/Clean-Architecture/internal/usecase"
 )
 
 // CreateOrder is the resolver for the createOrder field.
