@@ -1,4 +1,4 @@
-module github.com/jorgemarinho/go-expert-clean-architecture
+module github.com/leo12wb/Clean-Architecture
 
 go 1.19
 
